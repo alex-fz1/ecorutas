@@ -40,7 +40,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 bg-verde-800/95 backdrop-blur-sm shadow-lg">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-
+          
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 text-white font-display text-xl font-bold">
             <Leaf className="text-verde-400" size={22} />
@@ -60,6 +60,7 @@ export function Navbar() {
                   <>
                     <button
                       className="flex items-center gap-1 px-3 py-2 text-sm font-body text-verde-100 hover:text-white rounded-md transition-colors"
+                      aria-expanded={activeDropdown === item.label}
                     >
                       {item.label}
                       <ChevronDown size={14} />
@@ -109,66 +110,66 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-  <button
-    onClick={() => setMobileOpen(prev => !prev)}
-    className="lg:hidden text-verde-100 hover:text-white p-2"
-    aria-label="Abrir menú"
-  >
-    {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-  </button>
-        </div >
 
-    {/* Mobile menu */ }
-  {
-    mobileOpen && (
-      <div className="lg:hidden pb-4 space-y-1">
-        {NAV_ITEMS.map(item => (
-          <div key={item.label}>
-            {item.children ? (
-              <>
-                <button
-                  onClick={() => toggleDropdown(item.label)}
-                  className="flex items-center justify-between w-full px-3 py-2 text-verde-100 font-body text-sm rounded-md hover:bg-verde-700"
-                >
-                  {item.label}
-                  <ChevronDown
-                    size={14}
-                    className={clsx(
-                      "transition-transform duration-200",
-                      activeDropdown === item.label && "rotate-180"
+          {/* Botón Móvil (Corregido dentro del contenedor flex) */}
+          <button
+            onClick={() => setMobileOpen(prev => !prev)}
+            className="lg:hidden text-verde-100 hover:text-white p-2 focus:outline-none"
+            aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
+
+        {/* Mobile menu */}
+        {mobileOpen && (
+          <div className="lg:hidden pb-4 space-y-1 border-t border-verde-700/50 pt-2">
+            {NAV_ITEMS.map(item => (
+              <div key={item.label}>
+                {item.children ? (
+                  <>
+                    <button
+                      onClick={() => toggleDropdown(item.label)}
+                      className="flex items-center justify-between w-full px-3 py-2 text-verde-100 font-body text-sm rounded-md hover:bg-verde-700"
+                    >
+                      {item.label}
+                      <ChevronDown
+                        size={14}
+                        className={clsx(
+                          "transition-transform duration-200",
+                          activeDropdown === item.label && "rotate-180"
+                        )}
+                      />
+                    </button>
+                    {activeDropdown === item.label && (
+                      <div className="pl-4 mt-1 space-y-1 bg-verde-950/40 rounded-md py-1">
+                        {item.children.map(child => (
+                          <NavLink
+                            key={child.to}
+                            to={child.to}
+                            onClick={() => setMobileOpen(false)}
+                            className="block px-3 py-2 text-sm text-verde-200 hover:text-white rounded-md hover:bg-verde-700"
+                          >
+                            {child.label}
+                          </NavLink>
+                        ))}
+                      </div>
                     )}
-                  />
-                </button>
-                {activeDropdown === item.label && (
-                  <div className="pl-4 mt-1 space-y-1">
-                    {item.children.map(child => (
-                      <NavLink
-                        key={child.to}
-                        to={child.to}
-                        onClick={() => setMobileOpen(false)}
-                        className="block px-3 py-2 text-sm text-verde-200 hover:text-white rounded-md hover:bg-verde-700"
-                      >
-                        {child.label}
-                      </NavLink>
-                    ))}
-                  </div>
+                  </>
+                ) : (
+                  <NavLink
+                    to={item.to!}
+                    onClick={() => setMobileOpen(false)}
+                    className="block px-3 py-2 text-sm text-verde-100 hover:text-white rounded-md hover:bg-verde-700"
+                  >
+                    {item.label}
+                  </NavLink>
                 )}
-              </>
-            ) : (
-              <NavLink
-                to={item.to!}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2 text-sm text-verde-100 hover:text-white rounded-md hover:bg-verde-700"
-              >
-                {item.label}
-              </NavLink>
-            )}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-    )
-  }
-      </nav >
-    </header >
+        )}
+      </nav>
+    </header>
   );
 }

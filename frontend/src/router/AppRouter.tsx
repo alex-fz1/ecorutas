@@ -9,9 +9,9 @@ const Recorridos = lazy(() => import("../pages/Recorridos").then(m => ({ default
 const BiodiversidadFauna = lazy(() => import("../pages/BiodiversidadFauna").then(m => ({ default: m.BiodiversidadFauna })));
 const BiodiversidadFlora = lazy(() => import("../pages/BiodiversidadFlora").then(m => ({ default: m.BiodiversidadFlora })));
 const EspecieDetalle = lazy(() => import("../pages/EspecieDetalle").then(m => ({ default: m.EspecieDetalle })));
-const Galeria = lazy(() => import("../pages/Galeria").then(m => ({ default: m.Galeria })));
-const ManualDidactico = lazy(() => import("../pages/ManualDidactico").then(m => ({ default: m.ManualDidactico })));
-const AcercaDe = lazy(() => import("../pages/AcercaDe").then(m => ({ default: m.AcercaDe })));
+const Galeria = lazy(() => import('../pages/Galeria').then(m => ({ default: m.GaleriaPage })));
+const ManualDidactico = lazy(() => import("../pages/ManualDidactico").then(m => ({ default: m.ManualesDidacticos })));
+const AcercaDe = lazy(() => import('../pages/AcercaDe').then(m => ({ default: m.AcercaDe })));
 const Creditos = lazy(() => import("../pages/Creditos").then(m => ({ default: m.Creditos })));
 
 function PageLoader() {

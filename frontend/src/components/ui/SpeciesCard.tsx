@@ -37,20 +37,6 @@ export function SpeciesCard({ especie, baseUrl }: Props) {
         <p className="font-body text-sm text-verde-200 line-clamp-2 leading-relaxed">
           {especie.descripcion}
         </p>
-
-        {/* Badges */}
-        <div className="flex gap-2 mt-4 flex-wrap">
-          {especie.sketchfab_id && (
-            <span className="text-xs font-body bg-verde-700/60 text-verde-300 px-2 py-1 rounded-full">
-              🎲 Modelo 3D
-            </span>
-          )}
-          {especie.url_ra && (
-            <span className="text-xs font-body bg-tierra-700/60 text-tierra-300 px-2 py-1 rounded-full">
-              📱 Realidad Aumentada
-            </span>
-          )}
-        </div>
       </div>
     </Link>
   );
