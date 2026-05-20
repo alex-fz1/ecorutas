@@ -1,0 +1,27 @@
+# Variables de entorno – NUNCA subir a GitHub
+.env
+.env.local
+.env.*
+*.local
+backend/.env
+frontend/.env.local
+
+# Node & dependencias
+node_modules/
+**/node_modules/
+package-lock.json
+
+# Compilación y producción
+dist/
+build/
+frontend/dist/
+
+# Configuraciones de editores
+.vscode/
+.idea/
+*.suo
+*.ntvs
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
